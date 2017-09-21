@@ -1,0 +1,20 @@
+# Managed by puppet - do not modify
+[domain/<%= scope.lookupvar('::sssd::domain') %>]
+ldap_default_bind_dn = <%= scope.lookupvar('profile::sssd::ldap_default_bind_dn') %>
+ldap_default_authtok = <%= scope.lookupvar('profile::sssd::ldap_default_authtok') %>
+ldap_default_authtok_type = <%= scope.lookupvar('profile::sssd::ldap_default_authtok_type') %>
+ldap_tls_cacert = <%= scope.lookupvar('profile::sssd::ldap_tls_cacert') %>
+auth_provider = <%= scope.lookupvar('profile::sssd::auth_provider') %> 
+ldap_user_uid_number = <%= scope.lookupvar('profile::sssd::ldap_user_uid_number') %> 
+ldap_user_gid_number = <%= scope.lookupvar('profile::sssd::ldap_user_gid_number') %>
+ldap_group_gid_number = <%= scope.lookupvar('profile::sssd::ldap_group_gid_number') %>
+ldap_group_object_class = <%= scope.lookupvar('profile::sssd::ldap_group_object_class') %>
+ldap_user_object_class = <%= scope.lookupvar('profile::sssd::ldap_user_object_class') %>
+default_shell = <%= scope.lookupvar('profile::sssd::default_shell') %>
+fallback_homedir = <%= scope.lookupvar('profile::sssd::fallback_homedir') %>
+<% if scope.lookupvar('profile::sssd::auth_provider') == 'krb5' -%>
+krb5_server = <%= scope.lookupvar('krb5_server') %>
+krb5_backup_server = <%= scope.lookupvar('krb5_backup_server') %>
+krb5_realm = <%= scope.lookupvar('krb5_realm') %>
+krb5_auth_timeout = <%= scope.lookupvar('krb5_auth_timeout') %>
+<% end -%>
