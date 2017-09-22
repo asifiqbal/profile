@@ -46,15 +46,15 @@ class profile::sssd (
       mode    => '0644',
       content => hiera('keyfile'),
     }
-    if $operatingsystem == 'Ubuntu' {
-      file { '/etc/pam.d/common-session': 
-        ensure  => 'file',
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0644',
-        source => 'puppet:///modules/profile/common-session', 
-     }
-    }
+#    if $operatingsystem == 'Ubuntu' {
+#      file { '/etc/pam.d/common-session': 
+#        ensure  => 'file',
+#        owner   => 'root',
+#        group   => 'root',
+#        mode    => '0644',
+#        source => 'puppet:///modules/profile/common-session', 
+#     }
+#    }
 
     Class['::sssd::install'] -> Class['::sssd::config'] -> File['/etc/sssd/conf.d'] -> File['/etc/sssd/conf.d/ldapbind.conf'] ~> Class[::sssd::service]  
 }
