@@ -44,7 +44,7 @@ class profile::sssd (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      source  => "puppet:///modules/profile/${ldap_tls_cacert_basename}",
+      content => hiera('keyfile'),
     }
     if $operatingsystem == 'Ubuntu' {
       file { '/etc/pam.d/common-session': 
